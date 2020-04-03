@@ -1,0 +1,13 @@
+{
+  "editor.tabCompletion": "off",
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  //"editor.fontFamily": "'Consolas, 'Courier New', monospace",
+  //"terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
+  "extensions.ignoreRecommendations": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "all"
+}

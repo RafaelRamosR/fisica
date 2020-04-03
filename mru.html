@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Calculadora de física</title>
+  <meta name="description" content="Ejercicios con JS">
+  <meta name="author" content="Rafael R. Ramos R. - Sebastián Lastre">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– 
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  -->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="twelve columns">
+                    <h5 class="separator">CALCULADORA DE FÍSICA</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="u-full-width">
+                    <label for="operacion" class="one two columns">Operación:</label>
+                    <select class="four columns" id="operacion">
+                        <option value="">Seleccione una operación</option>
+                        <option value="distancia">Distancia</option>
+                        <option value="tiempo">Tiempo</option>
+                        <option value="velocidad">Velocidad</option>
+                    </select>
+                </div>
+                <div class="u-full-width"  id="madre">
+                </div>
+            </div>
+            <form id="form" action="#" autocomplete="off">
+                <div id="resultado">
+                    <div class="row">
+                        <div class="u-full-width">
+                            <label for="distancia" class="one two columns">Ditancia</label>
+                            <input class="four columns" type="number" name="distancia" placeholder="Distancia">
+                        </div>
+                        <div class="u-full-width">
+                            <select class="two columns" name="unidad-distancia">
+                                <option value="m">m</option>
+                                <option value="km">km</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="u-full-width">
+                            <label for="tiempo" class="one two columns">Tiempo</label>
+                            <input class="four columns" type="number" name="tiempo" placeholder="Tiempo">
+                        </div>
+                        <div class="u-full-width">
+                            <select class="two columns" name="unidad-tiempo">
+                                <option value="s">Seg</option>
+                                <option value="h">Horas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="u-full-width">
+                            <label for="velocidad" class="one two columns">Velocidad</label>
+                            <input class="four columns" type="number" name="velocidad" placeholder="Velocidad">
+                        </div>
+                        <div class="u-full-width">
+                            <select class="two columns" name="unidad-velocidad">
+                                <option value="m/s">m/s</option>
+                                <option value="km/h">km/h</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="button-primary" type="button" id="calcular">CALCULAR</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
