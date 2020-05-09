@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>MUA - Calculadora</title>
+  <meta name="description" content="Ejercicios con JS">
+  <meta name="author" content="Rafael R. Ramos R.">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="images/png" href="images/favicon.png">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="twelve columns">
+                    <h5 class="separator">CALCULADORA DE FÍSICA</h5>
+                </div>
+            </div>
+            <form id="form_mua" action="#" autocomplete="off">
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="nameOperacion" class="one two columns">Operación:</label>
+                      <select class="four columns" name="nameOperacion">
+                          <option value="">Seleccione una operación</option>
+                          <option value="initialVelocity">Velocidad inicial</option>
+                          <option value="finalVelocity">Velocidad final</option>
+                          <option value="distance">Distancia</option>
+                          <option value="time">Tiempo</option>
+                          <option value="acceleration">Aceleración</option>
+                      </select>
+                  </div>
+                  <div class="u-full-width"  id="madre">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="initialVelocity" class="one two columns">Velocidad inicial</label>
+                      <input class="four columns" type="number" name="initialVelocity" placeholder="Velocidad inicial">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit-initialVelocity">
+                          <option value="m/s">m/s</option>
+                          <option value="km/h">km/h</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="finalVelocity" class="one two columns">Velocidad final</label>
+                      <input class="four columns" type="number" name="finalVelocity" placeholder="Velocidad final">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit-finalVelocity">
+                          <option value="m/s">m/s</option>
+                          <option value="km/h">km/h</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="distance" class="one two columns">Ditancia</label>
+                      <input class="four columns" type="number" name="distance" placeholder="Distancia">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit-distance">
+                          <option value="m">m</option>
+                          <option value="km">km</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="time" class="one two columns">Tiempo</label>
+                      <input class="four columns" type="number" name="time" placeholder="Tiempo">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit-time">
+                          <option value="s">Seg</option>
+                          <option value="h">Horas</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="acceleration" class="one two columns">Aceleración</label>
+                      <input class="four columns" type="number" name="acceleration" placeholder="Aceleración">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit-acceleration">
+                          <option value="m/s2">m/s2</option>
+                          <option value="km/h2">km/h2</option>
+                      </select>
+                  </div>
+              </div>
+              <button class="button-primary" type="submit" id="calcular">CALCULAR</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>
