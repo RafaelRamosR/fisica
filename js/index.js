@@ -2,6 +2,18 @@ import MUA from "./clases/Class.js";
 import Calculate from "./clases/Calculate.js";
 const cal = new Calculate
 
+nameOperation.addEventListener('change', () => {
+  if(insert.children.length !== 0){
+    insert.children[0].remove()
+  }
+
+  if(nameOperation.value){
+    let nodo = form_mua.querySelector(`select[name='unit-${nameOperation.value}']`)
+    let copyNode = nodo.cloneNode(true);
+    insert.appendChild(copyNode)
+  }
+})
+
 form_mua.addEventListener('submit', (e) => {
   e.preventDefault()
 
@@ -38,5 +50,11 @@ form_mua.addEventListener('submit', (e) => {
       break
   }
 
-  alert(`Velocidad inicial: ` + cal.getInitialVelocity())
+  alert(`
+    Velocidad inicial: ${cal.getInitialVelocity()}
+    Velocidad final: ${cal.getFinalVelocity()}
+    Aceleración: ${cal.getAcceleration()}
+    Distancia: ${cal.getDistance()}
+    Tiempo: ${cal.getTime()}
+  `)
 })

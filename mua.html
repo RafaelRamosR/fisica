@@ -26,16 +26,15 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="row">
-                <div class="twelve columns">
-                    <h5 class="separator">CALCULADORA DE FÍSICA</h5>
-                </div>
-            </div>
+          <div class="twelve columns">
+              <h5 class="separator">CALCULADORA DE FÍSICA</h5>
+          </div>
+          <div class="twelve columns">
             <form id="form_mua" action="#" autocomplete="off">
               <div class="row">
                   <div class="u-full-width">
-                      <label for="nameOperacion" class="one two columns">Operación:</label>
-                      <select class="four columns" name="nameOperacion">
+                      <label for="nameOperation" class="one two columns">Operación:</label>
+                      <select id="nameOperation" class="four columns" name="nameOperation">
                           <option value="">Seleccione una operación</option>
                           <option value="initialVelocity">Velocidad inicial</option>
                           <option value="finalVelocity">Velocidad final</option>
@@ -44,7 +43,7 @@
                           <option value="acceleration">Aceleración</option>
                       </select>
                   </div>
-                  <div class="u-full-width"  id="madre">
+                  <div class="u-full-width" id="insert">
                   </div>
               </div>
               <div class="row">
@@ -109,6 +108,7 @@
               </div>
               <button class="button-primary" type="submit" id="calcular">CALCULAR</button>
             </form>
+          </div>
         </div>
     </div>
     <script type="module" src="./js/index.js"></script>
