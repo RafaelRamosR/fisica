@@ -49,10 +49,10 @@
               <div class="row">
                   <div class="u-full-width">
                       <label for="initialVelocity" class="one two columns">Velocidad inicial</label>
-                      <input class="four columns" type="number" name="initialVelocity" placeholder="Velocidad inicial">
+                      <input class="four columns" type="number" name="initialVelocity" min="0" step="any">
                   </div>
                   <div class="u-full-width">
-                      <select class="two columns" name="unit-initialVelocity">
+                      <select class="two columns" name="unit_initialVelocity">
                           <option value="m/s">m/s</option>
                           <option value="km/h">km/h</option>
                       </select>
@@ -61,10 +61,10 @@
               <div class="row">
                   <div class="u-full-width">
                       <label for="finalVelocity" class="one two columns">Velocidad final</label>
-                      <input class="four columns" type="number" name="finalVelocity" placeholder="Velocidad final">
+                      <input class="four columns" type="number" name="finalVelocity" min="0" step="any">
                   </div>
                   <div class="u-full-width">
-                      <select class="two columns" name="unit-finalVelocity">
+                      <select class="two columns" name="unit_finalVelocity">
                           <option value="m/s">m/s</option>
                           <option value="km/h">km/h</option>
                       </select>
@@ -72,11 +72,23 @@
               </div>
               <div class="row">
                   <div class="u-full-width">
-                      <label for="distance" class="one two columns">Ditancia</label>
-                      <input class="four columns" type="number" name="distance" placeholder="Distancia">
+                      <label for="acceleration" class="one two columns">Aceleración</label>
+                      <input class="four columns" type="number" name="acceleration" step="any">
                   </div>
                   <div class="u-full-width">
-                      <select class="two columns" name="unit-distance">
+                      <select class="two columns" name="unit_acceleration">
+                          <option value="m/s2">m/s2</option>
+                          <option value="km/h2">km/h2</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="u-full-width">
+                      <label for="distance" class="one two columns">Ditancia</label>
+                      <input class="four columns" type="number" name="distance" min="0" step="any">
+                  </div>
+                  <div class="u-full-width">
+                      <select class="two columns" name="unit_distance">
                           <option value="m">m</option>
                           <option value="km">km</option>
                       </select>
@@ -85,24 +97,12 @@
               <div class="row">
                   <div class="u-full-width">
                       <label for="time" class="one two columns">Tiempo</label>
-                      <input class="four columns" type="number" name="time" placeholder="Tiempo">
+                      <input class="four columns" type="number" name="time"  min="0" step="any">
                   </div>
                   <div class="u-full-width">
-                      <select class="two columns" name="unit-time">
+                      <select class="two columns" name="unit_time">
                           <option value="s">Seg</option>
                           <option value="h">Horas</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="u-full-width">
-                      <label for="acceleration" class="one two columns">Aceleración</label>
-                      <input class="four columns" type="number" name="acceleration" placeholder="Aceleración">
-                  </div>
-                  <div class="u-full-width">
-                      <select class="two columns" name="unit-acceleration">
-                          <option value="m/s2">m/s2</option>
-                          <option value="km/h2">km/h2</option>
                       </select>
                   </div>
               </div>
@@ -110,6 +110,36 @@
             </form>
           </div>
         </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+        <div class="one-third column u-full-width">
+          <h5>Purchase Increase</h5>
+          <h2>67%</h2>
+        </div>
+      </div>
     </div>
     <script type="module" src="./js/index.js"></script>
 </body>
