@@ -99,11 +99,7 @@ const convertTime = (value, unit, bool) => {
 }
 
 form_mua.addEventListener('submit', (e) => {
-  e.preventDefault()
-
-  if(validate(e.target))
-
-  var units = ['m/s', 'm', 's', 'm/s2']
+  if(validate(e.target)) e.preventDefault()
 
   // Declarar unidades
   let operation = e.target.nameOperation.value,
@@ -113,16 +109,24 @@ form_mua.addEventListener('submit', (e) => {
   udis = e.target.unit_distance.value,
   utim = e.target.unit_time.value
 
-  // 1. Se ingresa el valor a convertir
-  // 2. Se ingresa la unidad para verificar si se necesita convertir
-  // 3. Includes devuelve true o false para indicar el tipo de conversión
-  let initialVelocity = convertVelocity(e.target.initialVelocity.value, uive, units.includes(e.target[1].value))
-  let finalVelocity = convertVelocity(e.target.finalVelocity.value, ufve, units.includes(e.target[1].value))
-  let acceleration = convertAcceleration(e.target.acceleration.value, uacc, units.includes(e.target[1].value))
-  let distance = convertDistance(e.target.distance.value, udis, units.includes(e.target[1].value))
-  let time = convertTime(e.target.time.value, utim, units.includes(e.target[1].value))
+  // Array con las unidades en metro
+  var units = ['m/s', 'm', 's', 'm/s2']
+  /*
+    Se almacena true o false si hay alguna coincidencia
+    con la unidad de la operación seleccionada
+  */
+  var checkUnits = units.includes(e.target[1].value)
 
-  cal.setFinalVelocity(initialVelocity)
+  // 1. Se ingresa el valor a convertir
+  // 2. La unidad permitirá saber el tipo de conversión
+  // 3. El resultado de checkUnits indica si necesita ser convertido
+  let initialVelocity = convertVelocity(e.target.initialVelocity.value, uive, checkUnits)
+  let finalVelocity = convertVelocity(e.target.finalVelocity.value, ufve, checkUnits)
+  let acceleration = convertAcceleration(e.target.acceleration.value, uacc, checkUnits)
+  let distance = convertDistance(e.target.distance.value, udis, checkUnits)
+  let time = convertTime(e.target.time.value, utim, checkUnits)
+
+  cal.setInitialVelocity(initialVelocity)
   cal.setFinalVelocity(finalVelocity)
   cal.setAcceleration(acceleration)
   cal.setDistance(distance)
@@ -141,20 +145,48 @@ form_mua.addEventListener('submit', (e) => {
     case "distance":
       cal.calculateDistance()
       break
-    case "tiem":
+    case "time":
       cal.calculateTime()
       break
     default:
-      alert("ERROR: DEBESELECCIONAR UNA OPCIÓN")
+      alert("ERROR: DEBE SELECCIONAR UNA OPCIÓN")
       break
   }
 
-  // ejemplo de resultado
-  alert(`
-    Velocidad inicial: ${cal.getInitialVelocity()}
-    Velocidad final: ${cal.getFinalVelocity()}
-    Aceleración: ${cal.getAcceleration()}
-    Distancia: ${cal.getDistance()}
-    Tiempo: ${cal.getTime()}
-  `)
+  viewResult(cal, checkUnits)
 })
+
+function viewResult(mua, checkUnits) {
+  const hijo = document.createElement("div")
+  hijo.classList.add("one-third.column.u-full-width")
+  hijo.innerHTML = `
+    <div class="row">
+      <div class="one-third column u-full-width">
+        <h5>VELOCIDAD INICIAL</h5>
+        <h2>${mua.getInitialVelocity()} ${checkUnits ? 'm/s' : 'km/h'}</h2>
+      </div>
+      <div class="one-third column u-full-width">
+        <h5>VELOCIDAD FINAL</h5>
+        <h2>${mua.getFinalVelocity()} ${checkUnits ? 'm/s' : 'km/h'}</h2>
+      </div>
+      <div class="one-third column u-full-width">
+        <h5>ACELERACIÓN</h5>
+        <h2>${mua.getAcceleration()} ${checkUnits ? 'm/s2' : 'km/h2'}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-third column u-full-width">
+        <h5>DISTANCIA</h5>
+        <h2>${mua.getDistance()} ${checkUnits ? 'm' : 'km'}</h2>
+      </div>
+      <div class="one-third column u-full-width">
+        <h5>TIEMPO</h5>
+        <h2>${mua.getTime()} ${checkUnits ? 'seg' : 'h'}</h2>
+      </div>
+      <div class="one-third column u-full-width">
+        <button class="button-primary" id="volver">Regresar</button>
+      </div>
+    </div>
+  `
+  result.appendChild(hijo)
+}

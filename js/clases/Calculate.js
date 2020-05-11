@@ -18,6 +18,7 @@ export default class Calculate extends MUA {
       alert(e)
     }
 
+    result = parseFloat(result.toFixed(4))
     this.setInitialVelocity(result)
     return result
   }
@@ -35,7 +36,7 @@ export default class Calculate extends MUA {
     } catch (e) {
       alert(e)
     }
-
+    result = parseFloat(result.toFixed(4))
     this.setFinalVelocity(result)
     return result
   }
@@ -53,6 +54,7 @@ export default class Calculate extends MUA {
       alert(e)
     }
 
+    result = parseFloat(result.toFixed(4))
     this.setAcceleration(result)
     return result
   }
@@ -70,6 +72,7 @@ export default class Calculate extends MUA {
       alert(e)
     }
 
+    result = parseFloat(result.toFixed(4))
     this.setDistance(result)
     return result
   }
@@ -83,6 +86,8 @@ export default class Calculate extends MUA {
       alert(e)
     }
 
+    result = parseFloat(result.toFixed(4))
+    this.setTime(result)
     return result
   }
 }
