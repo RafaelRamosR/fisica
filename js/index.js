@@ -38,68 +38,12 @@ const validate = (arr) => {
   return true
 }
 
-const convertVelocity = (value, unit, bool) => {
-  if(value !== "" && unit !== ""){
-    // convertir km/h a m/s
-    if(unit == "km/h" && bool == true){
-      value = value / 3.6
-    }
-
-    // convertir m/s a km/h
-    if(unit == "m" && bool == false){
-      value = value * 3.6
-    }
-  }
-  return value
-}
-
-const convertAcceleration = (value, unit, bool) => {
-  if(value !== "" && unit !== ""){
-    // convertir km/h2 a m/s2
-    if(unit == "km/h2" && bool == true){
-      value = (value * 1000) / 12960000
-    }
-
-    // convertir m/s2 a km/h2
-    if(unit == "m/s2" && bool == false){
-      value = (value / 1000) * 12960000
-    }
-  }
-  return value
-}
-
-const convertDistance = (value, unit, bool) => {
-  if(value !== "" && unit !== ""){
-    // convertir km a m
-    if(unit == "km" && bool == true){
-      value = value * 1000
-    }
-
-    // convertir m a km
-    if(unit == "m" && bool == false){
-      value = value / 1000
-    }
-  }
-  return value
-}
-
-const convertTime = (value, unit, bool) => {
-  if(value !== "" && unit !== ""){
-    // convertir horas a segundos
-    if(unit == "h" && bool == true){
-      value = value * 3600
-    }
-
-    // convertir segundos a horas
-    if(unit == "s" && bool == false){
-      value = value / 3600
-    }
-  }
-  return value
-}
-
 form_mua.addEventListener('submit', (e) => {
-  if(validate(e.target)) e.preventDefault()
+  e.preventDefault()
+
+  if(!validate(e.target)){
+    return alert('DATOS INSUFICIENTES')
+  }
 
   // Declarar unidades
   let operation = e.target.nameOperation.value,
@@ -149,7 +93,7 @@ form_mua.addEventListener('submit', (e) => {
       cal.calculateTime()
       break
     default:
-      alert("ERROR: DEBE SELECCIONAR UNA OPCIÓN")
+      alert("ERROR: DEBE SELECCIONAR UNA OPERACIÓN")
       break
   }
 
@@ -157,9 +101,15 @@ form_mua.addEventListener('submit', (e) => {
 })
 
 function viewResult(mua, checkUnits) {
-  const hijo = document.createElement("div")
-  hijo.classList.add("one-third.column.u-full-width")
-  hijo.innerHTML = `
+  if(isNaN(mua.getInitialVelocity())) { mua.calculateInitialVelocity() }
+  if(isNaN(mua.getFinalVelocity())) { mua.calculateFinalVelocity() }
+  if(isNaN(mua.getAcceleration())) { mua.calculateAcceleration() }
+  if(isNaN(mua.getDistance())) { mua.calculateDistance() }
+  if(isNaN(mua.getTime())) { mua.calculateTime() }
+
+  const aDiv = document.createElement("div")
+  aDiv.classList.add("one-third.column.u-full-width")
+  aDiv.innerHTML = `
     <div class="row">
       <div class="one-third column u-full-width">
         <h5>VELOCIDAD INICIAL</h5>
@@ -188,5 +138,66 @@ function viewResult(mua, checkUnits) {
       </div>
     </div>
   `
-  result.appendChild(hijo)
+  result.appendChild(aDiv)
+}
+
+// Conversión de valores
+const convertVelocity = (value, unit, bool) => {
+  if(value !== "" && unit !== ""){
+    // convertir km/h a m/s
+    if(unit == "km/h" && bool == true){
+      value = value / 3.6
+    }
+
+    // convertir m/s a km/h
+    if(unit == "m" && bool == false){
+      value = value * 3.6
+    }
+  }
+  return parseFloat(value)
+}
+
+const convertAcceleration = (value, unit, bool) => {
+  if(value !== "" && unit !== ""){
+    // convertir km/h2 a m/s2
+    if(unit == "km/h2" && bool == true){
+      value = (value * 1000) / 12960000
+    }
+
+    // convertir m/s2 a km/h2
+    if(unit == "m/s2" && bool == false){
+      value = (value / 1000) * 12960000
+    }
+  }
+  return parseFloat(value)
+}
+
+const convertDistance = (value, unit, bool) => {
+  if(value !== "" && unit !== ""){
+    // convertir km a m
+    if(unit == "km" && bool == true){
+      value = value * 1000
+    }
+
+    // convertir m a km
+    if(unit == "m" && bool == false){
+      value = value / 1000
+    }
+  }
+  return parseFloat(value)
+}
+
+const convertTime = (value, unit, bool) => {
+  if(value !== "" && unit !== ""){
+    // convertir horas a segundos
+    if(unit == "h" && bool == true){
+      value = value * 3600
+    }
+
+    // convertir segundos a horas
+    if(unit == "s" && bool == false){
+      value = value / 3600
+    }
+  }
+  return parseFloat(value)
 }

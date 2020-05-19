@@ -11,7 +11,7 @@ export default class Calculate extends MUA {
       if(!this.distance){
         result = this.finalVelocity - this.acceleration * this.time
       }else{
-        result = Math.pow(this.finalVelocity, 2) - (2 * this.acceleration * this.distance)
+        result = Math.pow(this.finalVelocity, 2) - (this.acceleration * this.distance * 2)
         result = Math.sqrt(result)
       }
     } catch (e) {
@@ -28,9 +28,9 @@ export default class Calculate extends MUA {
 
     try {
       if(!this.distance){
-        result = this.finalVelocity + this.acceleration * this.time
+        result = this.initialVelocity + this.acceleration * this.time
       }else{
-        result = Math.pow(this.initialVelocity, 2) * 2 * this.time * this.acceleration * this.distance
+        result = Math.pow(this.initialVelocity, 2) + this.acceleration * this.distance * 2
         result = Math.sqrt(result)
       }
     } catch (e) {
@@ -48,7 +48,7 @@ export default class Calculate extends MUA {
       if(!this.distance){
         result = (this.finalVelocity - this.initialVelocity) / this.time
       }else{
-        result = (Math.pow(this.finalVelocity, 2) - this.initialVelocity) - 2 * this.distance
+        result = (Math.pow(this.finalVelocity, 2) - Math.pow(this.initialVelocity, 2)) / (2 * this.distance)
       }
     } catch (e) {
       alert(e)
@@ -64,9 +64,9 @@ export default class Calculate extends MUA {
 
     try {
       if(!this.time){
-        result = (Math.pow(this.finalVelocity, 2) - Math.pow(this.initialVelocity, 2)) / (2 * this.acceleration)
+        result = (Math.pow(this.finalVelocity, 2) - Math.pow(this.initialVelocity, 2)) / (this.acceleration * 2)
       }else{
-        result = (this.initialVelocity * this.time) + (Math.pow(this.time, 2) * this.acceleration) / 2
+        result = (this.initialVelocity * this.time) + (this.acceleration / 2) * Math.pow(this.time, 2)
       } 
     } catch (error) {
       alert(e)
