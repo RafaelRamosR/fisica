@@ -150,11 +150,12 @@ const convertVelocity = (value, unit, bool) => {
     }
 
     // convertir m/s a km/h
-    if(unit == "m" && bool == false){
+    if(unit == "m/s" && bool == false){
       value = value * 3.6
     }
+    value = parseFloat(value)
   }
-  return parseFloat(value)
+  return value
 }
 
 const convertAcceleration = (value, unit, bool) => {
@@ -168,8 +169,9 @@ const convertAcceleration = (value, unit, bool) => {
     if(unit == "m/s2" && bool == false){
       value = (value / 1000) * 12960000
     }
+    value = parseFloat(value)
   }
-  return parseFloat(value)
+  return value
 }
 
 const convertDistance = (value, unit, bool) => {
@@ -183,8 +185,9 @@ const convertDistance = (value, unit, bool) => {
     if(unit == "m" && bool == false){
       value = value / 1000
     }
+    value = parseFloat(value)
   }
-  return parseFloat(value)
+  return value
 }
 
 const convertTime = (value, unit, bool) => {
@@ -198,6 +201,7 @@ const convertTime = (value, unit, bool) => {
     if(unit == "s" && bool == false){
       value = value / 3600
     }
+    value = parseFloat(value)
   }
-  return parseFloat(value)
+  return value
 }

@@ -28,23 +28,28 @@ export default class MUA {
   }
 
   setInitialVelocity(initialVelocity) {
-      this.initialVelocity = initialVelocity
+    if(initialVelocity !== "")
+      this.initialVelocity = parseFloat(initialVelocity.toFixed(4))
   }
 
   setFinalVelocity(finalVelocity){
-    this.finalVelocity = finalVelocity
+    if(finalVelocity !== "")
+      this.finalVelocity = parseFloat(finalVelocity.toFixed(4))
   }
 
   setAcceleration(acceleration){
-    this.acceleration = acceleration
+    if(acceleration !== "")
+      this.acceleration = parseFloat(acceleration.toFixed(4))
   }
 
   setDistance(distance){
-    this.distance = distance
+    if(distance !== "")
+      this.distance = parseFloat(distance.toFixed(4))
   }
 
   setTime(time){
-    this.time = time
+    if(time !== "")
+      this.time = parseFloat(time.toFixed(4))
   }
 
   // Methods
