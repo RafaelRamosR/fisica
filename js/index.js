@@ -2,42 +2,6 @@ import MUA from "./clases/Class.js";
 import Calculate from "./clases/Calculate.js";
 const cal = new Calculate
 
-// Agregar select de unidades
-nameOperation.addEventListener('change', () => {
-  // Si el div#insert tiene hijos, se eliminan
-  if(insert.children.length !== 0){
-    insert.children[0].remove()
-  }
-
-  // Una vez se seleciona la operación
-  // se clona el select de unidades y se añade al div#insert
-  if(nameOperation.value){
-    let nodo = form_mua.querySelector(`select[name='unit_${nameOperation.value}']`)
-    let copyNode = nodo.cloneNode(true);
-    insert.appendChild(copyNode)
-  }
-})
-
-// Validar formulario
-const validate = (arr) => {
-  const len = arr.length - 1
-  let count = 0
-  // Recorre todos los campos de e.target
-  for (let i = 0; i < len; i++) {
-    // Se cuentan todos los campos vacíos
-    if(!arr[i].value){
-      count++
-    }
-  }
-
-  // No se puede realizar la operación si hay más de
-  // dos campos vacío o no se ha definido el tipo de operación
-  if(count > 2 || !arr[0].value){
-    return false
-  }
-  return true
-}
-
 form_mua.addEventListener('submit', (e) => {
   e.preventDefault()
 
@@ -45,30 +9,21 @@ form_mua.addEventListener('submit', (e) => {
     return alert('DATOS INSUFICIENTES')
   }
 
-  // Declarar unidades
-  let operation = e.target.nameOperation.value,
-  uive = e.target.unit_initialVelocity.value,
-  ufve = e.target.unit_finalVelocity.value,
-  uacc = e.target.unit_acceleration.value,
-  udis = e.target.unit_distance.value,
-  utim = e.target.unit_time.value
-
+  // Se recibe el nombre de la operación
   // Array con las unidades en metro
-  var units = ['m/s', 'm', 's', 'm/s2']
-  /*
-    Se almacena true o false si hay alguna coincidencia
-    con la unidad de la operación seleccionada
-  */
-  var checkUnits = units.includes(e.target[1].value)
+  // Se determina en que unidades se entregaran los resultados
+  const operation = e.target.nameOperation.value,
+    units = ['m/s', 'm', 's', 'm/s2'],
+    checkUnits = units.includes(e.target[1].value)
 
   // 1. Se ingresa el valor a convertir
   // 2. La unidad permitirá saber el tipo de conversión
   // 3. El resultado de checkUnits indica si necesita ser convertido
-  let initialVelocity = convertVelocity(e.target.initialVelocity.value, uive, checkUnits)
-  let finalVelocity = convertVelocity(e.target.finalVelocity.value, ufve, checkUnits)
-  let acceleration = convertAcceleration(e.target.acceleration.value, uacc, checkUnits)
-  let distance = convertDistance(e.target.distance.value, udis, checkUnits)
-  let time = convertTime(e.target.time.value, utim, checkUnits)
+  let initialVelocity = convertVelocity(e.target.initialVelocity.value, e.target.unit_initialVelocity.value, checkUnits)
+  let finalVelocity = convertVelocity(e.target.finalVelocity.value, e.target.unit_finalVelocity.value, checkUnits)
+  let acceleration = convertAcceleration(e.target.acceleration.value, e.target.unit_acceleration.value, checkUnits)
+  let distance = convertDistance(e.target.distance.value, e.target.unit_distance.value, checkUnits)
+  let time = convertTime(e.target.time.value, e.target.unit_time.value, checkUnits)
 
   cal.setInitialVelocity(initialVelocity)
   cal.setFinalVelocity(finalVelocity)
@@ -100,6 +55,7 @@ form_mua.addEventListener('submit', (e) => {
   viewResult(cal, checkUnits)
 })
 
+// Mostrar en pantalla
 function viewResult(mua, checkUnits) {
   if(isNaN(mua.getInitialVelocity())) { mua.calculateInitialVelocity() }
   if(isNaN(mua.getFinalVelocity())) { mua.calculateFinalVelocity() }
@@ -139,6 +95,42 @@ function viewResult(mua, checkUnits) {
     </div>
   `
   result.appendChild(aDiv)
+}
+
+// Agregar select de unidades
+nameOperation.addEventListener('change', () => {
+  // Si el div#insert tiene hijos, se eliminan
+  if(insert.children.length !== 0){
+    insert.children[0].remove()
+  }
+
+  // Una vez se seleciona la operación
+  // se clona el select de unidades y se añade al div#insert
+  if(nameOperation.value){
+    let nodo = form_mua.querySelector(`select[name='unit_${nameOperation.value}']`)
+    let copyNode = nodo.cloneNode(true);
+    insert.appendChild(copyNode)
+  }
+})
+
+// Validar formulario
+const validate = (arr) => {
+  const len = arr.length - 1
+  let count = 0
+  // Recorre todos los campos de e.target
+  for (let i = 0; i < len; i++) {
+    // Se cuentan todos los campos vacíos
+    if(!arr[i].value){
+      count++
+    }
+  }
+
+  // No se puede realizar la operación si hay más de
+  // dos campos vacío o no se ha definido el tipo de operación
+  if(count > 2 || !arr[0].value){
+    return false
+  }
+  return true
 }
 
 // Conversión de valores
